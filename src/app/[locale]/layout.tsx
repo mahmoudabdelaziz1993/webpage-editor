@@ -3,14 +3,16 @@ import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import LanguageSwitcher from '../ui/LanguageSwitcher';
+import '../globals.css';
 
 export default async function LocaleLayout({
   children,
-  params: { locale }
+  params
 }: {
   children: React.ReactNode;
-  params: { locale: "ar" | "en" };
+  params: Promise<{ locale: "ar" | "en" }>;
 }) {
+  const { locale } = await params;
   // Ensure that the incoming `locale` is valid
   if (!routing.locales.includes(locale as "ar" | "en")) {
     notFound();
@@ -23,7 +25,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-      <body>
+      <body className='p-4'>
         <LanguageSwitcher locale={locale} />
         <NextIntlClientProvider messages={messages}>
           {children}

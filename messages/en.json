@@ -1,5 +1,14 @@
 {
     "HomePage": {
-        "title": "Hello "
+        "title": "Hello ",
+        "cta": "Click here to see the store"
+    },
+    "store": {
+        "title": "Store",
+        "cta": "Click here to see the home page",
+        "product": {
+            "title": "Limited Edition Sports Trainer",
+            "price": "189.99"
+        }
     }
 }

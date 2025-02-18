@@ -1,3 +1,4 @@
+import { Link } from '@/i18n/routing';
 import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 export async function generateMetadata({ params }: { params: Promise<{ locale: "ar" | "en" }> }) {
@@ -14,6 +15,7 @@ export default function HomePage() {
   return (
     <div>
       <h1>{t('title')}</h1>
+      <Link href="/store" >{t('cta')}</Link>
     </div>
   );
 }
