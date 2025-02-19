@@ -4,7 +4,7 @@ import SearchBar from "./search-bar";
 
 export default function Navbar() {
     return (
-        <div className="w-full   fixed top-0 left-0 right-0 z-50 bg-zinc-50 text-zinc-950 placeholder: shadow-md">
+        <div className="w-full    bg-zinc-50 text-zinc-950 placeholder: shadow-md">
             <div className="mx-auto  lg:px-20 py-5 px-5 max-w-screen-2xl gap-6 flex justify-between items-center ">
                 {/* Start  */}
                 <div className="">

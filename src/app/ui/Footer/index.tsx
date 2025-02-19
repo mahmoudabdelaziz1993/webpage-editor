@@ -64,7 +64,7 @@ export default function Footer({ locale }: {
                 {/* divider */}
                 <div className="border-t border-current"></div>
                 {/* bottom section */}
-                <div className="flex justify-between items-center gap-3">
+                <div className="flex justify-between items-center gap-3 flex-wrap">
                     {/* start */}
                     <div className="">
                         {/* policy Links */}

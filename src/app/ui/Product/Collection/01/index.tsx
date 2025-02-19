@@ -1,3 +1,7 @@
+'use client';
+
+import { useEffect, useState } from "react";
+
 interface Product {
     id: number;
     images: string[];
@@ -5,8 +9,16 @@ interface Product {
     price: number;
     // Add other product properties as needed
 }
-export default async function ProductCollection01() {
-    const products: Product[] = await fetch("https://api.escuelajs.co/api/v1/products?offset=0&limit=12").then((res) => res.json());
+export default function ProductCollection01() {
+    // const products: Product[] = await fetch("https://api.escuelajs.co/api/v1/products?offset=0&limit=12").then((res) => res.json());
+    const [products, setProducts] = useState<Product[]>([]);
+    // fetch products on client
+    useEffect(() => {
+        fetch("https://api.escuelajs.co/api/v1/products?offset=0&limit=12")
+            .then((res) => res.json())
+            .then((data) => setProducts(data))
+            ;
+    }, []);
 
 
     return (

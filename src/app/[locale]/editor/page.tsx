@@ -1,31 +1,21 @@
-'use client';
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// import { Link } from '@/i18n/routing';
-// import { useTranslations } from 'next-intl';
-// import { getTranslations } from 'next-intl/server';
+// src/app/puck/editor/page.tsx
+"use client";
 
-import { Data, DefaultComponentProps, Render } from "@measured/puck";
-import { config } from "../puck-config";
-import { useEffect, useState } from "react";
-
-// export async function generateMetadata({ params }: { params: Promise<{ locale: "ar" | "en" }> }) {
-//   const { locale } = await params;
-
-//   const t = await getTranslations({ locale, namespace: 'HomePage' });
-
-//   return {
-//     title: t('title')
-//   };
-// }
+import { useState, useEffect } from "react";
+import { Puck, DefaultComponentProps, Data } from "@measured/puck";
+import { config } from "@/app/puck-config";
+import "@measured/puck/puck.css";
+// import { revalidatePath } from "next/cache";
+import { useRouter } from "next/navigation";
 
 export type PuckData = Data<DefaultComponentProps, any>;
 
-export default function HomePage() {
-  // const t = useTranslations('HomePage');
+export default function PuckEditor() {
   const [data, setData] = useState<PuckData>({
 
   } as PuckData);
-
+  const router = useRouter()
   useEffect(() => {
     console.log("Initial render - loading data from localStorage");
     const savedData = localStorage.getItem("puck-data");
@@ -53,8 +43,25 @@ export default function HomePage() {
     }
   }, []);
 
+  useEffect(() => {
+    console.log("Data state updated", data);
+  }, [data]);
+
+  const saveData = (newData: Data<DefaultComponentProps, any>) => {
+    console.log("Publish Page Data", newData);
+    setData(newData);
+    localStorage.setItem("puck-data", JSON.stringify(newData));
+    // revalidatePath("/");
+    router.push('/');
+
+  };
 
   return (
-    <Render config={config} data={data} />
+    <Puck
+      key={JSON.stringify(data)} // Force re-render when data changes
+      config={config}
+      data={data}
+      onPublish={saveData}
+    />
   );
 }

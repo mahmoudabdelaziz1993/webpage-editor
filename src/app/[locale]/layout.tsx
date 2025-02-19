@@ -3,9 +3,9 @@ import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import '../globals.css';
-import Navbar from '../ui/Navbar';
+// import Navbar from '../ui/Navbar';
 import { IBM_Plex_Sans_Arabic } from 'next/font/google'
-import Footer from '../ui/Footer';
+// import Footer from '../ui/Footer';
 
 
 const ibm = IBM_Plex_Sans_Arabic({
@@ -39,12 +39,12 @@ export default async function LocaleLayout({
       <body className=' flex flex-col min-h-screen w-full'>
 
         <NextIntlClientProvider messages={messages}>
-          <Navbar />
-          <main className="flex-1 mt-20 pt-4">
-            {/* <LanguageSwitcher locale={locale} /> */}
-            {children}
-          </main>
-          <Footer locale={locale} />
+          {/* <Navbar />
+          <main className="flex-1 mt-20 pt-4"> */}
+          {/* <LanguageSwitcher locale={locale} /> */}
+          {children}
+          {/* </main>
+          <Footer locale={locale} /> */}
         </NextIntlClientProvider>
       </body>
     </html>
