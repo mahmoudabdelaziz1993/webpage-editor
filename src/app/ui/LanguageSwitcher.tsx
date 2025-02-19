@@ -15,7 +15,7 @@ const LanguageSwitcher = ({ locale }: { locale: "en" | "ar" }) => {
     };
 
     return (
-        <select onChange={changeLanguage} defaultValue={locale}>
+        <select className='bg-inherit border-none  focus:outline-none p-4 rounded-lg  focus:ring-0  ' onChange={changeLanguage} defaultValue={locale}>
             {['ar', 'en'].map((lang) => (
                 <option key={lang} value={lang}>          {lang === 'en' ? 'English' : 'العربية'} {/* Add language labels */}</option>
             ))}

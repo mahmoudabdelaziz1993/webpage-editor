@@ -2,9 +2,18 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
-import LanguageSwitcher from '../ui/LanguageSwitcher';
 import '../globals.css';
+import Navbar from '../ui/Navbar';
+import { IBM_Plex_Sans_Arabic } from 'next/font/google'
+import Footer from '../ui/Footer';
 
+
+const ibm = IBM_Plex_Sans_Arabic({
+  subsets: ['arabic'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-ibm'
+})
+  ;
 export default async function LocaleLayout({
   children,
   params
@@ -14,7 +23,9 @@ export default async function LocaleLayout({
 }) {
   const { locale } = await params;
   // Ensure that the incoming `locale` is valid
-  if (!routing.locales.includes(locale as "ar" | "en")) {
+  if (
+    locale &&
+    !routing.locales.includes(locale)) {
     notFound();
   }
   // Enable static rendering
@@ -24,11 +35,16 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-      <body className='p-4'>
-        <LanguageSwitcher locale={locale} />
+    <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'} className={ibm.className}>
+      <body className=' flex flex-col min-h-screen w-full'>
+
         <NextIntlClientProvider messages={messages}>
-          {children}
+          <Navbar />
+          <main className="flex-1 mt-20 pt-4">
+            {/* <LanguageSwitcher locale={locale} /> */}
+            {children}
+          </main>
+          <Footer locale={locale} />
         </NextIntlClientProvider>
       </body>
     </html>
