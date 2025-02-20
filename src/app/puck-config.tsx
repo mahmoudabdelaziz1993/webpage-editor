@@ -29,13 +29,14 @@ export const config: Config = {
             fields: {
                 storeName: {
                     type: "text",
+                    label: "Store Name"
                 },
                 logoImage: {
                     type: "custom", // Add an image upload field
-                    label: "Logo Image",
+
                     render: ({ value, onChange }) => (
                         <ImageUploadField
-                            name={"Upload your logo"}
+                            name={"Logo image"}
                             value={value}
                             onChange={onChange}
                         />)
@@ -43,8 +44,8 @@ export const config: Config = {
 
             },
             defaultProps: {
-                storeName: "Sllm store",
-                logoImage: "/globe.svg"
+                storeName: "Store Name",
+                logoImage: "/defaults/Logo.png"
             },
             render: ({ storeName, logoImage }: { storeName: string, logoImage: string }) => <Navbar storeName={storeName} logoImage={logoImage} />
         },
@@ -53,8 +54,37 @@ export const config: Config = {
             render: () => <Hero01 />
         },
         Hero02: {
+            fields: {
+                heading: {
+                    type: "text"
+                },
+                description: {
+                    type: "textarea"
+                },
+                buttonText: {
+                    type: "text",
+                    label: "Button Text"
+                },
+                backgroundImage: {
+                    type: "custom", // Add an image upload field
+
+                    render: ({ value, onChange }) => (
+                        <ImageUploadField
+                            name={"Background image"}
+                            value={value}
+                            onChange={onChange}
+                        />)
+                },
+
+            },
+            defaultProps: {
+                heading: "Shirt new arrivals",
+                description: "The best T shirts for your style and your budget",
+                buttonText: "Get yours today",
+                backgroundImage: "/defaults/Hero02.jpeg"
+            },
             label: "Hero with background image",
-            render: () => <Hero02 />
+            render: ({ heading, description, buttonText, backgroundImage }: { heading: string, description: string, buttonText: string, backgroundImage: string }) => <Hero02 heading={heading} description={description} buttonText={buttonText} backgroundImage={backgroundImage} />
         },
         ProductsCollection: {
             render: () => <ProductCollection01 />

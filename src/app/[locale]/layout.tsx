@@ -4,13 +4,13 @@ import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import '../globals.css';
 // import Navbar from '../ui/Navbar';
-import { IBM_Plex_Sans_Arabic } from 'next/font/google'
+import { Roboto } from 'next/font/google'
 // import Footer from '../ui/Footer';
 
 
-const ibm = IBM_Plex_Sans_Arabic({
-  subsets: ['arabic'],
-  weight: ['400', '500', '600', '700'],
+const ibm = Roboto({
+  subsets: ['latin'],
+  weight: ['400', '500', '700'],
   variable: '--font-ibm'
 })
   ;
