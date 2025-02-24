@@ -54,9 +54,9 @@ export default function Navbar({ storeName, logoImage }: {
                     <CartButton />
                     {/*                Sign in */}
                     <Link href="!#"
-                        className="flex items-center justify-center  py-3 px-5 bg-zinc-950 text-white rounded-lg hover:bg-zinc-800"
+                        className="flex items-center whitespace-nowrap justify-center  py-3 px-5 bg-zinc-950 text-white rounded-lg hover:bg-zinc-800"
                     >
-                        الدخول
+                        Sign in
                     </Link>
                 </div>
             </div>

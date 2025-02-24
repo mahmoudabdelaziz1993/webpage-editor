@@ -50,8 +50,46 @@ export const config: Config = {
             render: ({ storeName, logoImage }: { storeName: string, logoImage: string }) => <Navbar storeName={storeName} logoImage={logoImage} />
         },
         Hero: {
+            fields: {
+                title: {
+                    label: "Heading Title",
+                    type: 'text',
+
+                },
+                description: {
+                    label: "Description",
+                    type: "textarea"
+                },
+                figure01: {
+                    type: "custom", // Add an image upload field
+
+                    render: ({ value, onChange }) => (
+                        <ImageUploadField
+                            name={"First Figure"}
+                            value={value}
+                            onChange={onChange}
+                        />)
+                },
+                figure02: {
+                    type: "custom", // Add an image upload field
+
+                    render: ({ value, onChange }) => (
+                        <ImageUploadField
+                            name={"Second Figure"}
+                            value={value}
+                            onChange={onChange}
+                        />)
+                }
+
+            },
+            defaultProps: {
+                title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Et, egestas tempus tellus etiamsed. Quam a scelerisque amet ullamcorper eu enim et fermentum, augue. Aliquet amet volutpat quisque ut interdum tincidunt duis.",
+                figure01: "/defaults/Hero01F1.jpeg",
+                figure02: "/defaults/Hero01F2.jpeg"
+            },
             label: "Hero with graphic's and text",
-            render: () => <Hero01 />
+            render: ({ title, description, figure01, figure02 }: { title: string, description: string, figure01: string, figure02: string }) => <Hero01 title={title} description={description} figure01={figure01} figure02={figure02} />
         },
         Hero02: {
             fields: {
