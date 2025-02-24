@@ -128,7 +128,28 @@ export const config: Config = {
             render: () => <ProductCollection01 />
         },
         Footer: {
-            render: () => <Footer locale="en" />
+            fields: {
+                storeName: {
+                    type: "text",
+                    label: "Store Name"
+                },
+                logoImage: {
+                    type: "custom", // Add an image upload field
+
+                    render: ({ value, onChange }) => (
+                        <ImageUploadField
+                            name={"Logo image"}
+                            value={value}
+                            onChange={onChange}
+                        />)
+                },
+
+            },
+            defaultProps: {
+                storeName: "Store Name",
+                logoImage: "/defaults/Logo.png"
+            },
+            render: ({ storeName, logoImage }: { storeName: string, logoImage: string }) => <Footer locale="en" storeName={storeName} logoImage={logoImage} />
         }
     }
 }
