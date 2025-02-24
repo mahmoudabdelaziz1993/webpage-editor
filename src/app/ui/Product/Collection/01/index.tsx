@@ -9,7 +9,7 @@ interface Product {
     price: number;
     // Add other product properties as needed
 }
-export default function ProductCollection01() {
+export default function ProductCollection01({ title, description }: { title: string, description: string }) {
     // const products: Product[] = await fetch("https://api.escuelajs.co/api/v1/products?offset=0&limit=12").then((res) => res.json());
     const [products, setProducts] = useState<Product[]>([]);
     // fetch products on client
@@ -26,11 +26,10 @@ export default function ProductCollection01() {
         <section className="bg-zinc-100">
             <div className="mx-auto max-w-screen-2xl px-4 py-8 sm:px-6 sm:py-12 lg:px-20 ">
                 <header>
-                    <h2 className="text-xl font-bold text-zinc-900 sm:text-3xl">Product Collection</h2>
+                    <h2 className="text-xl font-bold text-zinc-900 sm:text-3xl">{title}</h2>
 
                     <p className="mt-4 max-w-md text-zinc-500">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque praesentium cumque iure
-                        dicta incidunt est ipsam, officia dolor fugit natus?
+                        {description}
                     </p>
                 </header>
 

@@ -8,6 +8,7 @@ import { config } from "@/app/puck-config";
 import "@measured/puck/puck.css";
 // import { revalidatePath } from "next/cache";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export type PuckData = Data<DefaultComponentProps, any>;
 
@@ -62,6 +63,43 @@ export default function PuckEditor() {
       config={config}
       data={data}
       onPublish={saveData}
+      overrides={{
+
+        componentItem: ({ name }) => {
+          switch (name) {
+            case "Header":
+
+              return (<div className="w-full h-full min-h-5 shadow-md border-2 overflow-hidden rounded-lg">
+                <Image src={'/componets/navbar.png'} layout="fill" alt="..." className="object-contain" />
+              </div>)
+
+            case "Hero":
+              return (<div className="w-full h-full min-h-20 shadow-md border-2 overflow-hidden rounded-lg">
+                <Image src={'/componets/Hero01.png'} layout="fill" alt="..." className="object-contain" />
+              </div>)
+
+            case "Hero02":
+              return (<div className="w-full h-full min-h-20 shadow-md border-2 overflow-hidden rounded-lg">
+                <Image src={'/componets/Hero02.png'} layout="fill" alt="..." className="object-contain" />
+              </div>)
+
+            case "ProductsCollection":
+              return (<div className="w-full h-full min-h-40 shadow-md border-2 overflow-hidden rounded-lg">
+                <Image src={'/componets/ProductsCollection01.png'} layout="fill" alt="..." className="object-contain" />
+              </div>)
+
+            case "Footer":
+              return (<div className="w-full h-full min-h-5 shadow-md border-2 overflow-hidden rounded-lg">
+                <Image src={'/componets/Footer01.png'} layout="fill" alt="..." className="object-contain" />
+              </div>)
+            default:
+              return (<div className="text-xs">{name}</div>)
+          }
+
+
+        },
+
+      }}
     />
   );
 }

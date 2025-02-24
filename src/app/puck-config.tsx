@@ -6,10 +6,12 @@ import Footer from "./ui/Footer";
 import Hero02 from "./ui/Hero/02";
 import ImageUploadField from "./ui/inputs/image upload";
 
+
 export const config: Config = {
     categories: {
         Navbar: {
-            components: ["Header"]
+            components: ["Header"],
+
         },
         Hero: {
             components: ["Hero", "Hero02"]
@@ -125,7 +127,21 @@ export const config: Config = {
             render: ({ heading, description, buttonText, backgroundImage }: { heading: string, description: string, buttonText: string, backgroundImage: string }) => <Hero02 heading={heading} description={description} buttonText={buttonText} backgroundImage={backgroundImage} />
         },
         ProductsCollection: {
-            render: () => <ProductCollection01 />
+            fields: {
+                title: {
+                    type: "text",
+                    label: "Collection Title"
+                },
+                description: {
+                    type: "textarea",
+                    label: "Collection Description"
+                }
+            },
+            defaultProps: {
+                title: "New Arrivals",
+                description: "The best T shirts for your style and your budget"
+            },
+            render: ({ title, description }: { title: string, description: string }) => <ProductCollection01 title={title} description={description} />
         },
         Footer: {
             fields: {
